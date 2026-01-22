@@ -880,4 +880,66 @@ class AppProvider extends ChangeNotifier {
       ),
       Device(
         id: _uuid.v4(),
+        name: 'Kitchen Light',
+        type: DeviceType.light,
+        ipAddress: '192.168.1.103',
+        gpioPin: 12,
+        roomId: _rooms[1].id,
+        isOnline: true,
+        isOn: false,
+        brightness: 100,
+      ),
+      Device(
+        id: _uuid.v4(),
+        name: 'Water Tank',
+        type: DeviceType.waterPump,
+        ipAddress: '192.168.1.104',
+        gpioPin: 14,
+        roomId: _rooms[3].id,
+        isOnline: true,
+        isOn: false,
+        waterLevel: 65,
+      ),
+      Device(
+        id: _uuid.v4(),
+        name: 'Gas Detector',
+        type: DeviceType.gasSensor,
+        ipAddress: '192.168.1.105',
+        roomId: _rooms[1].id,
+        isOnline: true,
+        lpgValue: 12.5,
+        coValue: 3.2,
+        hasBattery: true,
+        batteryLevel: 87,
+      ),
+      Device(
+        id: _uuid.v4(),
+        name: 'Bedroom Light',
+        type: DeviceType.light,
+        ipAddress: '192.168.1.106',
+        gpioPin: 13,
+        roomId: _rooms[2].id,
+        isOnline: false,
+        isOn: false,
+        brightness: 50,
+      ),
+    ];
+
+    // Add initial logs
+    _addLog(
+      deviceId: 'system',
+      deviceName: 'System',
+      type: LogType.info,
+      action: 'App initialized with demo data',
+    );
+  }
+
+  String generateUuid() => _uuid.v4();
+
+  @override
+  void dispose() {
+    _simulationTimer?.cancel();
+    super.dispose();
+  }
+}
         
